@@ -26,6 +26,18 @@ After k8s installation is done . we need to connect nodes with the master via to
 
 kubeadm token create --print-join-command 
 
+## not to face error
+modprobe br_netfilter
+echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward = 1
+sysctl -p
+br_netfilter
+sysctl net.bridge.bridge-nf-call-iptables
+
+lately join your sockert
+
 ## whatever token comes up ...copy the token and paste it in notepad and after that in the command you will see 6443 written ...after that paste --cri-socket unix:///var/run/cri-dockerd.sock
 
 
